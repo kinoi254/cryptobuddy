@@ -1,0 +1,51 @@
+CRYPTOBUDDY STRUCTURE AND TONE
+
+import pandas as pd
+
+class Cryptobuddy:
+    def __init__(self):
+        self.crypto_data = None
+
+    def load_data(self, data):
+        self.crypto_data = data
+
+    def analyze_profitability(self, crypto_name):
+        crypto_data = self.crypto_data[self.crypto_data['Name'] == crypto_name]
+        if crypto_data['Price_Change'].values[0] > 0:
+            return f"Hey there! It looks like {crypto_name} has a positive price trend, which could mean it's a profitable investment opportunity! 📈"
+        else:
+            return f"Hey, just a heads up that {crypto_name} has a negative price trend. You might want to do some more research before investing. 📉"
+
+    def analyze_sustainability(self, crypto_name):
+        crypto_data = self.crypto_data[self.crypto_data['Name'] == crypto_name]
+        if crypto_data['Energy_Efficiency'].values[0] > 0.5:
+            return f"Great news! {crypto_name} has a high energy efficiency, which is awesome for the environment and could make it a more sustainable investment. 🌟"
+        else:
+            return f"Just something to consider: {crypto_name} has a lower energy efficiency. You might want to look into the environmental impact of your investment. 🌿"
+
+    def provide_investment_advice(self, crypto_name):
+        profitability_analysis = self.analyze_profitability(crypto_name)
+        sustainability_analysis = self.analyze_sustainability(crypto_name)
+        if "positive" in profitability_analysis and "high" in sustainability_analysis:
+            return f"Hey, based on our analysis, {crypto_name} looks like a great investment opportunity! It's profitable and sustainable. 🚀"
+        elif "negative" in profitability_analysis or "low" in sustainability_analysis:
+            return f"Just a heads up that {crypto_name} might not be the best investment opportunity right now. You might want to do some more research or consider other options. 🤔"
+        else:
+            return f"Hey, our analysis shows mixed results for {crypto_name}. You might want to dig deeper and consider multiple factors before making a decision. 📊"
+
+def main():
+    cryptobuddy = Cryptobuddy()
+    # Load your dataset here
+    # cryptobuddy.load_data(crypto_data)
+
+    print("Hi, I'm Cryptobuddy! 🤖 I'll help you make informed investment decisions in the world of cryptocurrency. 💸")
+    while True:
+        user_input = input("Enter the name of a cryptocurrency or 'exit' to quit: ")
+        if user_input.lower() == 'exit':
+            break
+        else:
+            print(cryptobuddy.provide_investment_advice(user_input))
+
+if __name__ == "__main__":
+    main()
+    
