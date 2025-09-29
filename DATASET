@@ -1,0 +1,31 @@
+LOADING AND REFINING DATASET
+class Cryptobuddy:ATASET
+    # ... (rest of the code remains the same)
+
+    def analyze_profitability(self, crypto_name):
+        crypto_data = self.crypto_data[self.crypto_data['Name'] == crypto_name]
+        if crypto_data['Price_Trend'].values[0] == "rising":
+            return f"Hey there! It looks like {crypto_name} has a rising price trend, which could mean it's a profitable investment opportunity! 📈"
+        elif crypto_data['Price_Trend'].values[0] == "stable":
+            return f"Hey, just a heads up that {crypto_name} has a stable price trend. You might want to consider other factors before investing. 📊"
+        else:
+            return f"Hey, just a heads up that {crypto_name} has a falling price trend. You might want to do some more research before investing. 📉"
+
+    def analyze_sustainability(self, crypto_name):
+        crypto_data = self.crypto_data[self.crypto_data['Name'] == crypto_name]
+        if crypto_data['Sustainability_Score'].values[0] > 0.7:
+            return f"Great news! {crypto_name} has a high sustainability score, which is awesome for the environment and could make it a more sustainable investment. 🌟"
+        elif crypto_data['Sustainability_Score'].values[0] > 0.4:
+            return f"Good job! {crypto_name} has a decent sustainability score. You might want to consider other factors before investing. 🌿"
+        else:
+            return f"Just something to consider: {crypto_name} has a lower sustainability score. You might want to look into the environmental impact of your investment. 🌿"
+
+    def provide_investment_advice(self, crypto_name):
+        profitability_analysis = self.analyze_profitability(crypto_name)
+        sustainability_analysis = self.analyze_sustainability(crypto_name)
+        if "rising" in profitability_analysis and "high" in sustainability_analysis:
+            return f"Hey, based on our analysis, {crypto_name} looks like a great investment opportunity! It's profitable and sustainable. 🚀"
+        elif "falling" in profitability_analysis or "lower" in sustainability_analysis:
+            return f"Just a heads up that {crypto_name} might not be the best investment opportunity right now. You might want to do some more research or consider other options. 🤔"
+        else:
+            return f"Hey, our analysis shows mixed results for {crypto_name}. You might want to dig deeper and consider multiple factors before making a decision. 📊"
